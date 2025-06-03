@@ -29,7 +29,7 @@ const projects = [
     tags: ['React', 'Tailwind CSS', 'App', 'Landing'],
     category: 'Web',
     image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
-    demo: '',
+    demo: 'https://app-landing-demo.vercel.app',
     code: ''
   },
   {
