@@ -20,7 +20,7 @@ const projects = [
     tags: ['React', 'Tailwind CSS', 'Landing'],
     category: 'Web',
     image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=80',
-    demo: '',
+    demo: 'https://cafeteria-green-two.vercel.app',
     code: ''
   },
   {
@@ -38,7 +38,7 @@ const projects = [
     tags: ['React', 'Tailwind CSS', 'E-commerce'],
     category: 'Web',
     image: 'https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?auto=format&fit=crop&w=800&q=80',
-    demo: '',
+    demo: 'https://tienda-online-red-zeta.vercel.app',
     code: ''
   }
 ];
