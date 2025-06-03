@@ -1,17 +1,32 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+
+// Función para hacer scroll suave a una sección
+const scrollToSection = (id: string) => {
+  if (id === 'hero') {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+  
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+};
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const navRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
+      const isScrolled = window.scrollY > 50;
       if (isScrolled !== scrolled) {
         setScrolled(isScrolled);
       }
@@ -21,35 +36,25 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
+  // Links de navegación
   const navLinks = [
-    { name: 'Inicio', to: '#' },
-    { name: 'Servicios', to: '#servicios' },
-    { name: 'Proyectos', to: '#proyectos' },
-    { name: 'Sobre mí', to: '#about' },
-    { name: 'Contacto', to: '#contact' },
+    { name: 'Inicio', id: 'hero' },
+    { name: 'Servicios', id: 'servicios' },
+    { name: 'Proyectos', id: 'proyectos' },
+    { name: 'Sobre mí', id: 'about' },
+    { name: 'Contacto', id: 'contact' },
   ];
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-    e.preventDefault();
+  // Manejar clic en enlace
+  const handleNavClick = (id: string) => {
+    scrollToSection(id);
     setIsOpen(false);
-    
-    if (sectionId === '') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-    
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      // Actualizar la URL sin recargar la página
-      window.history.pushState(null, '', `#${sectionId}`);
-    }
   };
 
   // Efecto para manejar el cierre del menú al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
@@ -65,7 +70,7 @@ const Navbar = () => {
 
   return (
     <header
-      ref={navRef}
+      ref={menuRef}
       className={`fixed w-full z-50 transition-all duration-500 ${
         scrolled 
           ? 'bg-gray-900/90 backdrop-blur-md py-2 shadow-2xl shadow-purple-900/20 border-b border-white/5' 
@@ -80,10 +85,10 @@ const Navbar = () => {
             whileTap={{ scale: 0.95 }}
             className="relative z-10"
           >
-            <Link 
-              to="/" 
-              onClick={(e) => scrollToSection(e, '')}
-              className="flex items-center space-x-2 group"
+            <button
+              onClick={() => scrollToSection('hero')}
+              className="flex items-center space-x-2 group focus:outline-none"
+              aria-label="Ir al inicio"
             >
               <span className="w-12 h-12 mr-2 rounded-lg shadow-lg flex items-center justify-center bg-gradient-to-br from-[#0a0a0f] via-[#0f172a] to-[#1e1b4b]">
                 <img src="/p_logo.png" alt="Logo PixelForge" className="w-10 h-10 rounded-lg" />
@@ -92,7 +97,7 @@ const Navbar = () => {
                 PixelForge
               </span>
               <span className="absolute -inset-2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full opacity-0 group-hover:opacity-100 blur-md transition-all duration-300 -z-10"></span>
-            </Link>
+            </button>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -100,9 +105,8 @@ const Navbar = () => {
             <div className="flex items-center space-x-1">
               {navLinks.map((link) => (
                 <div key={link.name} className="relative px-2">
-                  <a
-                    href={link.to}
-                    onClick={(e) => scrollToSection(e, link.to.replace('#', ''))}
+                  <button
+                    onClick={() => handleNavClick(link.id)}
                     className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 ${
                       hoveredItem === link.name 
                         ? 'text-white' 
@@ -112,7 +116,7 @@ const Navbar = () => {
                     onMouseLeave={() => setHoveredItem(null)}
                   >
                     {link.name}
-                  </a>
+                  </button>
                   {hoveredItem === link.name && (
                     <motion.div
                       layoutId="navHover"
@@ -164,21 +168,14 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
             >
               <div className="flex flex-col space-y-1">
-                {navLinks.map((link, index) => (
-                  <motion.a
-                    key={link.name}
-                    href={link.to}
-                    onClick={(e) => {
-                      scrollToSection(e, link.to.replace('#', ''));
-                      setIsOpen(false);
-                    }}
-                    className="block px-6 py-4 text-lg text-gray-200 hover:bg-white/5 rounded-xl transition-colors duration-300 font-medium border-b border-white/5"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 * index }}
+                {navLinks.map((link) => (
+                  <button
+                    key={link.id}
+                    onClick={() => handleNavClick(link.id)}
+                    className="px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800/50 transition-all cursor-pointer font-medium text-sm"
                   >
                     {link.name}
-                  </motion.a>
+                  </button>
                 ))}
               </div>
             </motion.div>

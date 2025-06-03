@@ -11,7 +11,7 @@ const projects = [
     tags: ['React', 'Tailwind CSS', 'Diseño Clásico'],
     category: 'Web',
     image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-    demo: '',
+    demo: 'https://estudio-juridico-ecru.vercel.app',
     code: ''
   },
   {
@@ -159,26 +159,36 @@ const Projects = () => {
                 <p className="text-gray-400 text-sm mb-4 line-clamp-2">
                   {project.description}
                 </p>
-                <a 
-                  href={project.demo || '#'} 
-                  className="inline-flex items-center text-sm font-medium text-purple-400 hover:text-white group-hover:translate-x-1 transition-all duration-300"
+                <button 
+                  onClick={() => {
+                    if (project.demo) {
+                      window.open(project.demo, '_blank', 'noopener,noreferrer');
+                    }
+                  }}
+                  className="inline-flex items-center text-sm font-medium text-purple-400 hover:text-white group-hover:translate-x-1 transition-all duration-300 cursor-pointer"
+                  disabled={!project.demo}
                 >
                   Ver proyecto
                   <FiArrowRight className="ml-1.5 group-hover:translate-x-1 transition-transform" />
-                </a>
+                </button>
               </div>
             </motion.div>
           ))}
         </div>
 
         <div className="text-center mt-16">
-          <a 
-            href="#contact" 
+          <button 
+            onClick={() => {
+              const element = document.getElementById('contact');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
             className="inline-flex items-center px-8 py-3.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 group"
           >
             <span>¿Tienes un proyecto en mente?</span>
             <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-          </a>
+          </button>
         </div>
       </div>
 

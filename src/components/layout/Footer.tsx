@@ -1,7 +1,54 @@
 import { FaLinkedin } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
+type NavLink = {
+  name: string;
+  id: string;
+};
+
+type LegalLink = {
+  name: string;
+  path: string;
+};
+
+type LinkItem = NavLink | LegalLink;
+
+type FooterColumn = {
+  title: string;
+  links: LinkItem[];
+};
+
+// Función para hacer scroll suave al principio
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+// Función para hacer scroll suave a una sección
+const scrollToSection = (id: string) => {
+  if (id === 'hero') {
+    scrollToTop();
+    return;
+  }
+  
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+};
+
 const Footer = () => {
+  // Función para manejar clic en enlaces legales
+  const handleLegalLinkClick = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    scrollToTop();
+    // Pequeño retraso para permitir que el scroll se complete antes de la navegación
+    setTimeout(() => {
+      window.location.href = path;
+    }, 500);
+  };
   const currentYear = new Date().getFullYear();
   
   const socialLinks = [
@@ -21,33 +68,33 @@ const Footer = () => {
     }
   ];
 
-  const footerLinks = [
+  const footerLinks: FooterColumn[] = [
     {
       title: 'Navegación',
       links: [
-        { name: 'Inicio', url: '#hero' },
-        { name: 'Servicios', url: '#servicios' },
-        { name: 'Proyectos', url: '#proyectos' },
-        { name: 'Sobre mí', url: '#about' },
-        { name: 'Contacto', url: '#contact' },
+        { name: 'Inicio', id: 'hero' },
+        { name: 'Servicios', id: 'servicios' },
+        { name: 'Proyectos', id: 'proyectos' },
+        { name: 'Sobre mí', id: 'about' },
+        { name: 'Contacto', id: 'contact' },
       ]
     },
     {
       title: 'Servicios',
       links: [
-        { name: 'Desarrollo Web', url: '#servicios' },
-        { name: 'Landing Pages', url: '#servicios' },
-        { name: 'Integración de APIs', url: '#servicios' },
-        { name: 'Mantenimiento', url: '#servicios' },
+        { name: 'Desarrollo Web', id: 'servicios' },
+        { name: 'Landing Pages', id: 'servicios' },
+        { name: 'Integración de APIs', id: 'servicios' },
+        { name: 'Mantenimiento', id: 'servicios' },
       ]
     },
     {
       title: 'Legal',
       links: [
-        { name: 'Política de privacidad', url: '/legal/privacidad' },
-        { name: 'Términos de servicio', url: '/legal/terminos' },
-        { name: 'Aviso legal', url: '/legal/aviso' },
-      ]
+        { name: 'Política de privacidad', path: '/legal/privacidad' },
+        { name: 'Términos de servicio', path: '/legal/terminos' },
+        { name: 'Aviso legal', path: '/legal/aviso' },
+      ] as LegalLink[]
     }
   ];
 
@@ -118,12 +165,22 @@ const Footer = () => {
               <ul className="space-y-3">
                 {column.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    <a 
-                      href={link.url} 
-                      className="text-gray-400 hover:text-[#8b5cf6] transition-colors font-medium hover:underline underline-offset-4 decoration-[#8b5cf6]/40"
-                    >
-                      {link.name}
-                    </a>
+                    {'path' in link ? (
+                      <a 
+                        href={link.path}
+                        onClick={(e) => handleLegalLinkClick(e, link.path)}
+                        className="text-gray-400 hover:text-[#8b5cf6] transition-colors font-medium hover:underline underline-offset-4 decoration-[#8b5cf6]/40 block cursor-pointer"
+                      >
+                        {link.name}
+                      </a>
+                    ) : (
+                      <button
+                        onClick={() => scrollToSection(link.id)}
+                        className="text-gray-400 hover:text-[#8b5cf6] transition-colors font-medium hover:underline underline-offset-4 decoration-[#8b5cf6]/40 text-left w-full"
+                      >
+                        {link.name}
+                      </button>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -150,10 +207,18 @@ const Footer = () => {
             &copy; {currentYear} <span className="text-[#8b5cf6] font-bold">PixelForge</span>. Todos los derechos reservados.
           </p>
           <div className="flex space-x-6">
-            <a href="#privacidad" className="text-gray-500 hover:text-[#8b5cf6] text-sm transition-colors font-medium">
+            <a 
+              href="/legal/privacidad"
+              onClick={(e) => handleLegalLinkClick(e, '/legal/privacidad')}
+              className="text-gray-500 hover:text-[#8b5cf6] text-sm transition-colors font-medium cursor-pointer"
+            >
               Política de privacidad
             </a>
-            <a href="#terminos" className="text-gray-500 hover:text-[#8b5cf6] text-sm transition-colors font-medium">
+            <a 
+              href="/legal/terminos"
+              onClick={(e) => handleLegalLinkClick(e, '/legal/terminos')}
+              className="text-gray-500 hover:text-[#8b5cf6] text-sm transition-colors font-medium cursor-pointer"
+            >
               Términos de servicio
             </a>
           </div>

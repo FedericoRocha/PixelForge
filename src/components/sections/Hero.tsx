@@ -16,23 +16,7 @@ const Hero = () => {
     'portafolio',
     'e-commerce',
   ];
-  // Scroll suave igual que el Navbar
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-    e.preventDefault();
-    if (sectionId === '' || sectionId === '#') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      window.history.pushState(null, '', '#');
-      return;
-    }
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const yOffset = -80;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-      window.history.pushState(null, '', `#${sectionId}`);
-    }
-  };
-  
+
 
   useEffect(() => {
     // Animación de entrada para los elementos flotantes
@@ -163,10 +147,13 @@ const Hero = () => {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-6"
           >
-            <a
-              href="#contact"
-              onClick={e => scrollToSection(e, 'contact')}
-              // scroll igual que Navbar
+            <button
+              onClick={() => {
+                const element = document.getElementById('contact');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
               className="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden text-lg font-medium text-white rounded-xl bg-gradient-to-r from-[#8b5cf6] to-[#6366f1] hover:from-[#7c3aed] hover:to-[#4f46e5] transition-all duration-300 shadow-lg shadow-[#8b5cf6]/30 hover:shadow-xl hover:shadow-[#8b5cf6]/40"
             >
               <span className="relative z-10 flex items-center">
@@ -174,16 +161,19 @@ const Hero = () => {
                 <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </span>
               <span className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></span>
-            </a>
-            <a
-              href="#proyectos"
-              onClick={e => scrollToSection(e, 'proyectos')}
-              // scroll igual que Navbar
+            </button>
+            <button
+              onClick={() => {
+                const element = document.getElementById('proyectos');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
               className="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden text-lg font-medium text-white rounded-xl bg-transparent border-2 border-[#8b5cf6] hover:bg-[#8b5cf6]/10 transition-all duration-300 hover:shadow-lg hover:shadow-[#8b5cf6]/20"
             >
               <span className="relative z-10">Ver proyectos</span>
               <span className="absolute inset-0 bg-gradient-to-r from-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></span>
-            </a>
+            </button>
           </motion.div>
         </motion.div>
 

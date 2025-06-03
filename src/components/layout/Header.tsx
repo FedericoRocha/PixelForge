@@ -15,12 +15,17 @@ const Header = () => {
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-tight text-center animate-fade-in">
           Desarrollamos <span className="text-[#8b5cf6]">ideas</span> en <span className="text-[#06b6d4]">código</span>
         </h1>
-        <a
-          href="#contacto"
-          className="mt-4 px-8 py-3 rounded-xl bg-gradient-to-tr from-[#8b5cf6] via-[#06b6d4] to-[#f97316] text-white font-semibold text-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#8b5cf6] animate-fade-in"
+        <button
+          onClick={() => {
+            const element = document.getElementById('contact');
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }}
+          className="mt-4 px-8 py-3 rounded-xl bg-gradient-to-tr from-[#8b5cf6] via-[#06b6d4] to-[#f97316] text-white font-semibold text-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#8b5cf6] animate-fade-in cursor-pointer"
         >
           ¡Hablemos de tu proyecto!
-        </a>
+        </button>
       </div>
     </header>
   );
