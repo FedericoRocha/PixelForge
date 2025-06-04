@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import LegalSection from '../components/sections/LegalSection';
 
@@ -22,13 +22,13 @@ const LegalPage = () => {
       {/* Header */}
       <header className="border-b border-[#23272f] bg-[#181C22]/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <a 
-            href="/" 
+          <Link 
+            to="/" 
             className="flex items-center text-gray-300 hover:text-white transition-colors group"
           >
             <FiArrowLeft className="mr-2 group-hover:-translate-x-1 transition-transform" />
             Volver al inicio
-          </a>
+          </Link>
           <h1 className="text-xl font-bold bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] bg-clip-text text-transparent">
             {pageTitles[section]}
           </h1>
@@ -46,24 +46,24 @@ const LegalPage = () => {
         <div className="container mx-auto px-4 text-center text-gray-400 text-sm">
           <p>© {new Date().getFullYear()} PixelForge. Todos los derechos reservados.</p>
           <div className="flex justify-center space-x-6 mt-4">
-            <a 
-              href="/legal/privacidad" 
+            <Link 
+              to="/legal/privacidad" 
               className={`${section === 'privacidad' ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
             >
               Privacidad
-            </a>
-            <a 
-              href="/legal/terminos" 
+            </Link>
+            <Link 
+              to="/legal/terminos" 
               className={`${section === 'terminos' ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
             >
               Términos
-            </a>
-            <a 
-              href="/legal/aviso" 
+            </Link>
+            <Link 
+              to="/legal/aviso" 
               className={`${section === 'aviso' ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
             >
               Aviso Legal
-            </a>
+            </Link>
           </div>
         </div>
       </footer>

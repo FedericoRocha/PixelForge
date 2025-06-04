@@ -1,5 +1,6 @@
 import { FaLinkedin } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 type NavLink = {
   name: string;
@@ -207,20 +208,32 @@ const Footer = () => {
             &copy; {currentYear} <span className="text-[#8b5cf6] font-bold">PixelForge</span>. Todos los derechos reservados.
           </p>
           <div className="flex space-x-6">
-            <a 
-              href="/legal/privacidad"
-              onClick={(e) => handleLegalLinkClick(e, '/legal/privacidad')}
+            <Link 
+              to="/legal/privacidad"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setTimeout(() => {
+                  window.location.href = '/legal/privacidad';
+                }, 100);
+              }}
               className="text-gray-500 hover:text-[#8b5cf6] text-sm transition-colors font-medium cursor-pointer"
             >
               Política de privacidad
-            </a>
-            <a 
-              href="/legal/terminos"
-              onClick={(e) => handleLegalLinkClick(e, '/legal/terminos')}
+            </Link>
+            <Link 
+              to="/legal/terminos"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setTimeout(() => {
+                  window.location.href = '/legal/terminos';
+                }, 100);
+              }}
               className="text-gray-500 hover:text-[#8b5cf6] text-sm transition-colors font-medium cursor-pointer"
             >
               Términos de servicio
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>
