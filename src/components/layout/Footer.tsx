@@ -67,16 +67,33 @@ const Footer = () => {
     {
       icon: <FaLinkedin className="w-5 h-5" />,
       url: 'https://www.linkedin.com/in/federico-daniel-rocha-577b45159/',
-      label: 'LinkedIn'
+      label: 'LinkedIn',
+      gradient: 'from-blue-600 to-blue-800'
     },
     {
       icon: (
-        <svg width="20" height="20" fill="none" viewBox="0 0 20 20" className="w-5 h-5">
-          <path d="M2.5 4.5v11a2 2 0 002 2h11a2 2 0 002-2v-11a2 2 0 00-2-2h-11a2 2 0 00-2 2zm1.6 0a.4.4 0 01.4-.4h11a.4.4 0 01.4.4v.63l-6 4.8-6-4.8V4.5zm0 1.84l5.74 4.6a1 1 0 001.32 0l5.74-4.6V15.5a.4.4 0 01-.4.4h-11a.4.4 0 01-.4-.4V6.34z" fill="#8b5cf6"/>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="w-5 h-5">
+          <path 
+            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" 
+            fill="currentColor"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path 
+            d="M22 6l-10 7L2 6" 
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       ),
       url: 'mailto:federicodanielrocha@outlook.com.ar',
-      label: 'Email'
+      label: 'Email',
+      gradient: 'from-rose-500 to-pink-600'
     }
   ];
 
@@ -149,19 +166,27 @@ const Footer = () => {
             <p className="text-gray-400 mb-6">
               Soluciones web modernas y personalizadas para hacer crecer tu presencia en línea.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-3">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-[#8b5cf6] transition-colors rounded-full p-2 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]/40"
+                  className={`group relative p-1.5 rounded-full bg-gradient-to-br ${social.gradient} shadow-lg`}
                   aria-label={social.label}
-                  whileHover={{ scale: 1.2, boxShadow: '0 0 12px #8b5cf6' }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ 
+                    scale: 1.15,
+                    rotate: [0, 10, -10, 0],
+                    transition: { duration: 0.4 }
+                  }}
+                  whileTap={{ scale: 0.9 }}
                 >
-                  {social.icon}
+                  <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <span className="relative z-10 text-white">
+                    {social.icon}
+                  </span>
+                  <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-white/20 to-transparent"></div>
                 </motion.a>
               ))}
             </div>
@@ -175,10 +200,11 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.1 * index }}
               viewport={{ once: true }}
             >
-              <h4 className="text-white font-semibold mb-4 text-lg tracking-wide">
-                <span className="bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] bg-clip-text text-transparent">
+              <h4 className="font-semibold mb-4 text-lg tracking-wide">
+                <span className="bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] bg-clip-text text-transparent animate-pulse drop-shadow-lg">
                   {column.title}
                 </span>
+                <span className="block h-0.5 w-0 bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] transition-all duration-500 group-hover:w-full group-hover:opacity-100 opacity-0 mt-1"></span>
               </h4>
               <ul className="space-y-3">
                 {column.links.map((link, linkIndex) => (

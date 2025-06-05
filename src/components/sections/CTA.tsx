@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { FaPaperPlane, FaRocket, FaLightbulb, FaCode } from 'react-icons/fa';
+import { NeonText } from '../ui/NeonText';
 
 const CTA = () => {
   return (
@@ -32,19 +33,29 @@ const CTA = () => {
               </motion.span>
               
               <motion.div 
-                className="mb-8"
+                className="mb-12 text-center"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-blue-400">
-                    ¿Listo para hacer despegar
-                  </span>
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-blue-400">
-                    tu próximo proyecto?
-                  </span>
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                  <div className="mb-2 md:mb-4">
+                    <NeonText 
+                      text="¿Listo para hacer despegar" 
+                      color="purple"
+                      flickerIntensity="medium"
+                      wordFlicker={true}
+                    />
+                  </div>
+                  <div>
+                    <NeonText 
+                      text="tu próximo proyecto?" 
+                      color="cyan"
+                      flickerIntensity="high"
+                      wordFlicker={true}
+                    />
+                  </div>
                 </h2>
               </motion.div>
               
@@ -99,30 +110,41 @@ const CTA = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.6 }}
               >
-                <div className="flex items-center">
-                  <div className="flex-shrink-0 bg-white/5 p-2 rounded-lg">
-                    <FaLightbulb className="w-5 h-5 text-yellow-400" />
-                  </div>
-                  <div className="ml-3">
-                    <div className="text-sm text-gray-400">Ideas innovadoras</div>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <div className="flex-shrink-0 bg-white/5 p-2 rounded-lg">
-                    <FaRocket className="w-5 h-5 text-purple-400" />
-                  </div>
-                  <div className="ml-3">
-                    <div className="text-sm text-gray-400">Desarrollo ágil</div>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <div className="flex-shrink-0 bg-white/5 p-2 rounded-lg">
-                    <FaCode className="w-5 h-5 text-blue-400" />
-                  </div>
-                  <div className="ml-3">
-                    <div className="text-sm text-gray-400">Código limpio</div>
-                  </div>
-                </div>
+                {[
+                  { icon: <FaLightbulb className="w-5 h-5" />, text: 'Ideas innovadoras', gradient: 'from-yellow-500 to-amber-600' },
+                  { icon: <FaRocket className="w-5 h-5" />, text: 'Desarrollo ágil', gradient: 'from-purple-500 to-pink-600' },
+                  { icon: <FaCode className="w-5 h-5" />, text: 'Código limpio', gradient: 'from-blue-500 to-cyan-600' }
+                ].map((item, index) => (
+                  <motion.div 
+                    key={index} 
+                    className="flex items-center group"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.7 + (index * 0.1) }}
+                  >
+                    <motion.div 
+                      className={`relative p-1.5 rounded-full bg-gradient-to-br ${item.gradient} shadow-lg`}
+                      whileHover={{ 
+                        scale: 1.15,
+                        rotate: [0, 10, -10, 0],
+                        transition: { duration: 0.4 }
+                      }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <span className="relative z-10 text-white">
+                        {item.icon}
+                      </span>
+                      <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-white/20 to-transparent"></div>
+                    </motion.div>
+                    <div className="ml-3">
+                      <div className="text-sm text-gray-300 group-hover:text-white transition-colors">
+                        {item.text}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </motion.div>
             </div>
           </motion.div>
