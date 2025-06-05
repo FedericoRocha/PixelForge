@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaPaperPlane, FaRocket, FaLightbulb, FaCode } from 'react-icons/fa';
 import { NeonText } from '../ui/NeonText';
+import { AlternatingText } from '../ui/AlternatingText';
 
 const CTA = () => {
   return (
@@ -44,16 +45,11 @@ const CTA = () => {
                     <NeonText 
                       text="¿Listo para hacer despegar" 
                       color="purple"
-                      flickerIntensity="medium"
-                      wordFlicker={true}
                     />
                   </div>
-                  <div>
-                    <NeonText 
-                      text="tu próximo proyecto?" 
-                      color="cyan"
-                      flickerIntensity="high"
-                      wordFlicker={true}
+                  <div className="mt-4">
+                    <AlternatingText 
+                      texts={["tu próximo proyecto?", "tu emprendimiento?", "tu visión digital?"]}
                     />
                   </div>
                 </h2>

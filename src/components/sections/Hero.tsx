@@ -1,5 +1,5 @@
 import { motion, useAnimation } from 'framer-motion';
-import { FaArrowRight, FaCode, FaLaptopCode } from 'react-icons/fa';
+import { FaArrowRight, FaLaptopCode } from 'react-icons/fa';
 import { useEffect, useRef } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 
@@ -43,7 +43,7 @@ const Hero = () => {
         initial={{ y: 0 }}
         animate={{ y: [0, -18, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute left-[7%] top-[6%] w-[24vw] max-w-md opacity-40 pointer-events-none select-none z-20 shadow-2xl md:w-[32vw] md:max-w-lg mix-blend-lighten"
+        className="hidden md:block absolute left-[7%] top-[6%] w-[24vw] max-w-md opacity-40 pointer-events-none select-none z-20 shadow-2xl md:w-[32vw] md:max-w-lg mix-blend-lighten"
         draggable="false"
       />
       <motion.img
@@ -52,7 +52,7 @@ const Hero = () => {
         initial={{ y: 0 }}
         animate={{ y: [0, 22, 0] }}
         transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute right-[5%] bottom-[7%] w-[32vw] max-w-lg opacity-30 pointer-events-none select-none z-20 shadow-2xl mix-blend-lighten"
+        className="hidden md:block absolute right-[5%] bottom-[7%] w-[32vw] max-w-lg opacity-30 pointer-events-none select-none z-20 shadow-2xl mix-blend-lighten"
         draggable="false"
       />
 
@@ -226,16 +226,6 @@ const Hero = () => {
             <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-gradient-to-r from-purple-600/30 to-pink-600/30 blur-3xl -z-10"></div>
             <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-gradient-to-r from-cyan-500/30 to-blue-600/30 blur-3xl -z-10"></div>
             <div className="absolute top-1/3 -right-12 w-16 h-16 rounded-full bg-gradient-to-r from-yellow-500/20 to-orange-500/20 blur-2xl -z-10"></div>
-            
-            <motion.div 
-              drag
-              dragConstraints={constraintsRef}
-              className="absolute -top-12 right-0 w-24 h-24 rounded-2xl bg-gradient-to-br from-purple-600/30 to-pink-600/30 backdrop-blur-sm border border-purple-500/20 shadow-lg flex items-center justify-center"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaCode className="text-3xl text-purple-400/80" />
-            </motion.div>
             
             <motion.div 
               drag
