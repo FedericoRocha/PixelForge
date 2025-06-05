@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Función para hacer scroll suave a una sección
 const scrollToSection = (id: string) => {
   if (id === 'hero') {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -36,7 +35,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
-  // Links de navegación
   const navLinks = [
     { name: 'Inicio', id: 'hero' },
     { name: 'Servicios', id: 'servicios' },
@@ -45,13 +43,11 @@ const Navbar = () => {
     { name: 'Contacto', id: 'contact' },
   ];
 
-  // Manejar clic en enlace
   const handleNavClick = (id: string) => {
     scrollToSection(id);
     setIsOpen(false);
   };
 
-  // Efecto para manejar el cierre del menú al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -79,7 +75,6 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between">
-          {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -100,7 +95,6 @@ const Navbar = () => {
             </button>
           </motion.div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x 1 relative">
             <div className="flex items-center space-x-1">
               {navLinks.map((link) => (
@@ -134,11 +128,9 @@ const Navbar = () => {
               ))}
             </div>
             
-            {/* Separador */}
             <div className="h-6 w-px bg-gray-700 mx-4"></div>
           </div>
 
-          {/* Mobile menu button */}
           <motion.div 
             className="md:hidden z-50"
             whileTap={{ scale: 0.9 }}
@@ -157,7 +149,6 @@ const Navbar = () => {
           </motion.div>
         </nav>
 
-        {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
             <motion.div 

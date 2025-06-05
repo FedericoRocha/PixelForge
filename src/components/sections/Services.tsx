@@ -58,13 +58,11 @@ const Services = () => {
 
   return (
     <section id="servicios" className="relative py-32 overflow-hidden">
-      {/* Background elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0f] via-[#0f172a] to-[#1e1b4b] opacity-100"></div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-[#8b5cf6]/5"></div>
         <div className="absolute inset-0 bg-grid-white/[0.02] [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black)]"></div>
         
-        {/* Animated blobs */}
         <div className="absolute -top-64 -right-64 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-purple-600/10 to-pink-600/10 blur-3xl animate-blob animation-delay-2000"></div>
         <div className="absolute -bottom-96 -left-64 w-[800px] h-[800px] rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-600/10 blur-3xl animate-blob animation-delay-4000"></div>
       </div>
@@ -124,13 +122,10 @@ const Services = () => {
                     href="#contact"
                     onClick={(e) => {
                       e.preventDefault();
-                      // Guardar el servicio de interés
                       sessionStorage.setItem('interestedService', service.title);
-                      // Desplazamiento suave a la sección CTA
                       const ctaSection = document.getElementById('contact');
                       if (ctaSection) {
                         ctaSection.scrollIntoView({ behavior: 'smooth' });
-                        // Actualizar URL sin recargar
                         window.history.pushState({}, '', '#contact');
                       }
                     }}
@@ -148,7 +143,6 @@ const Services = () => {
         </motion.div>
       </div>
 
-      {/* Decorative elements */}
       <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-gradient-to-r from-purple-600/20 to-pink-600/20 blur-3xl -z-10"></div>
       <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-600/20 blur-3xl -z-10"></div>
     </section>

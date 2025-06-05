@@ -97,7 +97,6 @@ const Process = () => {
 
   return (
     <section id="process" className="relative py-20 overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-      {/* Fondo decorativo */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==')]"></div>
       </div>
@@ -127,7 +126,6 @@ const Process = () => {
         </motion.div>
 
         <div className="relative">
-          {/* Línea de tiempo */}
           <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-purple-500/20 to-transparent"></div>
           
           <div className="grid gap-12 lg:gap-24">
@@ -143,7 +141,6 @@ const Process = () => {
                 className={`relative cursor-pointer transition-all duration-300 rounded-2xl p-8 border ${step.borderColor} ${step.bgColor} hover:shadow-xl hover:shadow-purple-500/10`}
               >
                 <div className="flex flex-col lg:flex-row items-start gap-8">
-                  {/* Número del paso */}
                   <div className="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold bg-white/10 text-white group-hover:bg-white group-hover:text-gray-900 transition-colors">
                     {index + 1}
                   </div>
@@ -184,19 +181,15 @@ const Process = () => {
                   </div>
                 </div>
                 
-                {/* Efecto de resplandor */}
                 <div className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-r ${step.color} opacity-0 ${
                   hoveredCard === index ? 'opacity-20' : ''
                 } blur-xl transition-opacity duration-300 -z-10`}></div>
               </motion.div>
             ))}
           </div>
-          
-          {/* Controles de navegación removidos */}
         </div>
       </div>
       
-      {/* Efectos de fondo */}
       <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-gradient-to-r from-purple-600/10 to-pink-600/10 blur-3xl -z-10"></div>
       <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-600/10 blur-3xl -z-10"></div>
     </section>

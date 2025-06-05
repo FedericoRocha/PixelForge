@@ -5,7 +5,6 @@ import LegalSection from '../components/sections/LegalSection';
 const LegalPage = () => {
   const { section } = useParams<{ section: 'privacidad' | 'terminos' | 'aviso' }>();
   
-  // Si no hay sección o es inválida, redirigir a privacidad
   if (!section || !['privacidad', 'terminos', 'aviso'].includes(section)) {
     window.location.href = '/legal/privacidad';
     return null;
@@ -19,7 +18,6 @@ const LegalPage = () => {
 
   return (
     <div className="min-h-screen bg-[#171B22] text-white">
-      {/* Header */}
       <header className="border-b border-[#23272f] bg-[#181C22]/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link 
@@ -32,16 +30,13 @@ const LegalPage = () => {
           <h1 className="text-xl font-bold bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] bg-clip-text text-transparent">
             {pageTitles[section]}
           </h1>
-          <div className="w-8"></div> {/* Para mantener el espacio */}
+          <div className="w-8"></div>
         </div>
       </header>
 
-      {/* Legal Content */}
       <main>
         <LegalSection sectionId={section} />
       </main>
-
-      {/* Footer Simple */}
       <footer className="bg-[#181C22] border-t border-[#23272f] py-8">
         <div className="container mx-auto px-4 text-center text-gray-400 text-sm">
           <p>© {new Date().getFullYear()} PixelForge. Todos los derechos reservados.</p>

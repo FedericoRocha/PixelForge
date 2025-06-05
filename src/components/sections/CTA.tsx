@@ -4,7 +4,6 @@ import { FaPaperPlane, FaRocket, FaLightbulb, FaCode } from 'react-icons/fa';
 const CTA = () => {
   return (
     <section id="contact" className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-      {/* Elementos decorativos */}
       <div className="absolute inset-0 bg-grid-white/[0.02] [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black)]"></div>
       <div className="absolute -top-1/2 left-1/2 w-full max-w-4xl h-[800px] bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
       
@@ -17,7 +16,6 @@ const CTA = () => {
             transition={{ duration: 0.8 }}
             className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12 shadow-2xl overflow-hidden"
           >
-            {/* Elementos decorativos */}
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-600/10 rounded-full filter blur-3xl"></div>
             <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-600/10 rounded-full filter blur-3xl"></div>
             
@@ -131,11 +129,9 @@ const CTA = () => {
         </div>
       </div>
       
-      {/* Decorative elements */}
       <div className="absolute -top-32 -left-32 w-64 h-64 rounded-full bg-primary/10 blur-3xl"></div>
       <div className="absolute -bottom-32 -right-32 w-64 h-64 rounded-full bg-secondary/10 blur-3xl"></div>
       
-      {/* Pixel art decoration */}
       <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-secondary to-accent"></div>
     </section>
   );

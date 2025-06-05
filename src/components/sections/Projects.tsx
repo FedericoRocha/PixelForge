@@ -76,7 +76,6 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        {/* Filtros */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((category) => (
             <button
@@ -192,10 +191,8 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* Elementos decorativos */}
       <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-purple-500/10 blur-3xl"></div>
       <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl"></div>
-      {/* Imagen decorativa flotante: yunke */}
       <motion.img
         src="/yunke.png"
         alt="Yunque PixelForge decorativo"

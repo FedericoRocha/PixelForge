@@ -37,7 +37,6 @@ const Hero = () => {
   return (
     <section ref={constraintsRef} id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
 
-      {/* Imagen decorativa flotante: martillo */}
       <motion.img
         src="/martillo.png"
         alt="Martillo PixelForge decorativo"
@@ -47,7 +46,6 @@ const Hero = () => {
         className="absolute left-[7%] top-[6%] w-[24vw] max-w-md opacity-40 pointer-events-none select-none z-20 shadow-2xl md:w-[32vw] md:max-w-lg mix-blend-lighten"
         draggable="false"
       />
-      {/* Imagen decorativa flotante: código */}
       <motion.img
         src="/codigo_pixelForge.png"
         alt="Código PixelForge decorativo"
@@ -58,14 +56,11 @@ const Hero = () => {
         draggable="false"
       />
 
-      {/* Background elements */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        {/* Fondos */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0f] via-[#0f172a] to-[#1e1b4b] opacity-100 z-0"></div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-[#8b5cf6]/5 z-0"></div>
         <div className="absolute inset-0 bg-grid-white/[0.02] [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black)] z-0"></div>
         
-        {/* Elementos decorativos flotantes */}
         <motion.div 
           animate={controls}
           variants={{
@@ -177,7 +172,6 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        {/* Hero illustration */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -185,9 +179,7 @@ const Hero = () => {
           className="mt-24 lg:mt-32 relative"
         >
           <div className="relative max-w-5xl mx-auto">
-            {/* Glassmorphism card */}
             <div className="relative z-10 rounded-3xl overflow-hidden border border-gray-800/50 shadow-2xl backdrop-blur-sm bg-gradient-to-br from-gray-900/80 to-gray-800/30">
-              {/* Browser chrome */}
               <div className="h-10 bg-gray-900/80 border-b border-gray-800 flex items-center px-4 space-x-2">
                 <div className="flex space-x-2">
                   <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -201,7 +193,6 @@ const Hero = () => {
                 </div>
               </div>
               
-              {/* Code editor mockup */}
               <div className="p-6 md:p-8 lg:p-10 bg-gradient-to-br from-gray-900 to-gray-900/80">
                 <div className="font-mono text-sm md:text-base text-gray-400 space-y-4">
                   <div className="flex">
@@ -232,12 +223,10 @@ const Hero = () => {
               </div>
             </div>
             
-            {/* Decorative elements */}
             <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-gradient-to-r from-purple-600/30 to-pink-600/30 blur-3xl -z-10"></div>
             <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-gradient-to-r from-cyan-500/30 to-blue-600/30 blur-3xl -z-10"></div>
             <div className="absolute top-1/3 -right-12 w-16 h-16 rounded-full bg-gradient-to-r from-yellow-500/20 to-orange-500/20 blur-2xl -z-10"></div>
             
-            {/* Floating elements */}
             <motion.div 
               drag
               dragConstraints={constraintsRef}
@@ -261,7 +250,6 @@ const Hero = () => {
         </motion.div>
       </div>
       
-      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
         <div className="flex flex-col items-center">
           <span className="text-sm text-gray-400 mb-2">Desplazarse</span>

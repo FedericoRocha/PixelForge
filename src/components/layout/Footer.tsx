@@ -31,21 +31,32 @@ const scrollToSection = (id: string) => {
     return;
   }
   
-  const element = document.getElementById(id);
-  if (element) {
-    element.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
+  // Cerrar el menú móvil si está abierto
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+    const menuButton = document.querySelector('[aria-controls="mobile-menu"]');
+    if (menuButton) (menuButton as HTMLElement).click();
   }
+  
+  setTimeout(() => {
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  }, 100);
 };
 
 const Footer = () => {
-  // Función para manejar clic en enlaces legales
   const handleLegalLinkClick = (e: React.MouseEvent, path: string) => {
     e.preventDefault();
     scrollToTop();
-    // Pequeño retraso para permitir que el scroll se complete antes de la navegación
     setTimeout(() => {
       window.location.href = path;
     }, 500);
@@ -124,9 +135,16 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <div className="flex items-center space-x-2 mb-4">
-              <span className="text-2xl font-bold bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] bg-clip-text text-transparent animate-pulse drop-shadow-lg">
+              <Link 
+                to="/" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToTop();
+                }}
+                className="text-2xl font-bold bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] bg-clip-text text-transparent animate-pulse drop-shadow-lg hover:opacity-80 transition-opacity cursor-pointer"
+              >
                 PixelForge
-              </span>
+              </Link>
             </div>
             <p className="text-gray-400 mb-6">
               Soluciones web modernas y personalizadas para hacer crecer tu presencia en línea.
@@ -149,7 +167,6 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Footer links */}
           {footerLinks.map((column, index) => (
             <motion.div
               key={index}
@@ -176,8 +193,11 @@ const Footer = () => {
                       </a>
                     ) : (
                       <button
-                        onClick={() => scrollToSection(link.id)}
-                        className="text-gray-400 hover:text-[#8b5cf6] transition-colors font-medium hover:underline underline-offset-4 decoration-[#8b5cf6]/40 text-left w-full"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollToSection(link.id);
+                        }}
+                        className="text-gray-400 hover:text-[#8b5cf6] transition-colors font-medium hover:underline underline-offset-4 decoration-[#8b5cf6]/40 text-left w-full py-1"
                       >
                         {link.name}
                       </button>
@@ -189,7 +209,6 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Bottom bar */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

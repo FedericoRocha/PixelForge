@@ -1,7 +1,6 @@
 const Header = () => {
   return (
     <header className="relative min-h-[70vh] flex flex-col justify-center items-center bg-[#171B22] overflow-hidden">
-      {/* Gradiente de fondo sutil */}
       <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
         <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[80vw] h-[50vh] rounded-full blur-3xl opacity-60 bg-gradient-to-tr from-[#8b5cf6] via-[#06b6d4] to-[#f97316] animate-pulse-slow" />
       </div>

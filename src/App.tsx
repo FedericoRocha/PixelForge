@@ -1,7 +1,6 @@
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
-// Components
 import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
 import Services from './components/sections/Services';
@@ -12,7 +11,6 @@ import CTA from './components/sections/CTA';
 import Footer from './components/layout/Footer';
 import LegalPage from './pages/LegalPage';
 
-// Styles
 import './index.css';
 
 function App() {
