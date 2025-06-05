@@ -10,7 +10,7 @@ const projects = [
     description: 'Sitio clásico y profesional para un estudio jurídico. Diseño sobrio, tipografía elegante y presentación clara de servicios legales.',
     tags: ['React', 'Tailwind CSS', 'Diseño Clásico'],
     category: 'Web',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+    image: '/project-01.avif',
     demo: 'https://estudio-juridico-ecru.vercel.app',
     code: ''
   },
@@ -19,7 +19,7 @@ const projects = [
     description: 'Landing moderna y cálida para una cafetería urbana. Secciones de menú, ubicación y galería de ambiente.',
     tags: ['React', 'Tailwind CSS', 'Landing'],
     category: 'Web',
-    image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=80',
+    image: '/project-02.avif',
     demo: 'https://cafeteria-green-two.vercel.app',
     code: ''
   },
@@ -28,7 +28,7 @@ const projects = [
     description: 'Landing page para una app de productividad. Presentación de funcionalidades, capturas y llamada a la acción.',
     tags: ['React', 'Tailwind CSS', 'App', 'Landing'],
     category: 'Web',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
+    image: '/project-03.avif',
     demo: 'https://app-landing-demo.vercel.app',
     code: ''
   },
@@ -37,7 +37,7 @@ const projects = [
     description: 'Landing atractiva para tienda de ropa urbana. Catálogo destacado, testimonios y enlaces a redes sociales.',
     tags: ['React', 'Tailwind CSS', 'E-commerce'],
     category: 'Web',
-    image: 'https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?auto=format&fit=crop&w=800&q=80',
+    image: '/project-04.avif',
     demo: 'https://tienda-online-red-zeta.vercel.app',
     code: ''
   }
@@ -81,7 +81,7 @@ const Projects = () => {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
                 activeCategory === category
                   ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/20'
                   : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white'
@@ -183,7 +183,7 @@ const Projects = () => {
                 element.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }
             }}
-            className="inline-flex items-center px-8 py-3.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 group"
+            className="inline-flex items-center px-8 py-3.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 group cursor-pointer"
           >
             <span>¿Tienes un proyecto en mente?</span>
             <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaFileDownload, FaCode, FaPalette, FaMobileAlt, FaRocket } from 'react-icons/fa';
+import { FaCode, FaPalette, FaMobileAlt, FaRocket } from 'react-icons/fa';
 import { FiArrowRight } from 'react-icons/fi';
 import { SiTypescript, SiReact, SiNodedotjs, SiTailwindcss, SiFigma } from 'react-icons/si';
 
@@ -72,7 +72,7 @@ const About = () => {
               <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
               <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-1 border border-white/10 overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                  src="/setup-pixel-forge.avif" 
                   alt="Fede - Desarrollador Web"
                   className="w-full h-auto rounded-xl"
                 />
@@ -161,11 +161,32 @@ const About = () => {
                   <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a
-                  href="#"
-                  className="px-6 py-3 bg-white/5 backdrop-blur-sm text-white font-medium rounded-lg border border-white/10 hover:bg-white/10 transition-colors duration-300 flex items-center gap-2"
+                  href="https://curriculum-web-flax.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative px-8 py-3.5 bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 flex items-center gap-2 group overflow-hidden hover:brightness-110"
                 >
-                  <FaFileDownload className="w-4 h-4" />
-                  Descargar CV
+                  <span className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                  <span className="relative z-10 flex items-center gap-3">
+                    <span className="relative">
+                      <span className="relative z-0">
+                        <span className="text-4xl group-hover:animate-bounce-slow block transform group-hover:scale-110 transition-transform duration-300">
+                          <span className="relative z-10 inline-block">
+                            <span className="relative z-10 drop-shadow-[0_0_12px_rgba(167,139,250,0.8)]">
+                              👾
+                            </span>
+                            <span className="absolute inset-0 bg-gradient-to-r from-purple-400/30 to-blue-400/30 rounded-full blur-md opacity-70 -z-10"></span>
+                          </span>
+                        </span>
+                        <span className="absolute -inset-2 bg-gradient-to-r from-cyan-400/40 to-purple-500/40 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 -z-20 scale-90 group-hover:scale-110"></span>
+                      </span>
+                    </span>
+                    <span className="font-medium">Ver mi CV Online</span>
+                    <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform text-purple-200" />
+                  </span>
+                  <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:animate-pulse-slow transition-opacity duration-300">
+                    <span className="absolute w-4 h-4 bg-white/30 rounded-full"></span>
+                  </span>
                 </a>
               </div>
             </motion.div>

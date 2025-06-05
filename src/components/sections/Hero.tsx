@@ -149,7 +149,7 @@ const Hero = () => {
                   element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden text-lg font-medium text-white rounded-xl bg-gradient-to-r from-[#8b5cf6] to-[#6366f1] hover:from-[#7c3aed] hover:to-[#4f46e5] transition-all duration-300 shadow-lg shadow-[#8b5cf6]/30 hover:shadow-xl hover:shadow-[#8b5cf6]/40"
+              className="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden text-lg font-medium text-white rounded-xl bg-gradient-to-r from-[#8b5cf6] to-[#6366f1] hover:from-[#7c3aed] hover:to-[#4f46e5] transition-all duration-300 shadow-lg shadow-[#8b5cf6]/30 hover:shadow-xl hover:shadow-[#8b5cf6]/40 cursor-pointer"
             >
               <span className="relative z-10 flex items-center">
                 <span>Iniciar proyecto</span>
@@ -164,7 +164,7 @@ const Hero = () => {
                   element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden text-lg font-medium text-white rounded-xl bg-transparent border-2 border-[#8b5cf6] hover:bg-[#8b5cf6]/10 transition-all duration-300 hover:shadow-lg hover:shadow-[#8b5cf6]/20"
+              className="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden text-lg font-medium text-white rounded-xl bg-transparent border-2 border-[#8b5cf6] hover:bg-[#8b5cf6]/10 transition-all duration-300 hover:shadow-lg hover:shadow-[#8b5cf6]/20 cursor-pointer"
             >
               <span className="relative z-10">Ver proyectos</span>
               <span className="absolute inset-0 bg-gradient-to-r from-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></span>
@@ -187,7 +187,7 @@ const Hero = () => {
                   <div className="w-3 h-3 rounded-full bg-green-500"></div>
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <div className="text-xs bg-gray-800/50 text-gray-400 px-3 py-0.5 rounded-full">
+                  <div className="text-xs bg-gray-800/50 text-gray-400 px-3 py-0.5 rounded-full cursor-default">
                     pixelforge.dev
                   </div>
                 </div>

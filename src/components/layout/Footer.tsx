@@ -223,7 +223,7 @@ const Footer = () => {
                           e.preventDefault();
                           scrollToSection(link.id);
                         }}
-                        className="text-gray-400 hover:text-[#8b5cf6] transition-colors font-medium hover:underline underline-offset-4 decoration-[#8b5cf6]/40 text-left w-full py-1"
+                        className="text-gray-400 hover:text-[#8b5cf6] transition-colors font-medium hover:underline underline-offset-4 decoration-[#8b5cf6]/40 text-left w-full py-1 cursor-pointer"
                       >
                         {link.name}
                       </button>

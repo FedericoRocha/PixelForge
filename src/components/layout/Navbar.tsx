@@ -80,9 +80,13 @@ const Navbar = () => {
             whileTap={{ scale: 0.95 }}
             className="relative z-10"
           >
-            <button
-              onClick={() => scrollToSection('hero')}
-              className="flex items-center space-x-2 group focus:outline-none"
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('hero');
+              }}
+              className="flex items-center space-x-2 group focus:outline-none cursor-pointer"
               aria-label="Ir al inicio"
             >
               <span className="w-12 h-12 mr-2 rounded-lg shadow-lg flex items-center justify-center bg-gradient-to-br from-[#0a0a0f] via-[#0f172a] to-[#1e1b4b]">
@@ -92,16 +96,20 @@ const Navbar = () => {
                 PixelForge
               </span>
               <span className="absolute -inset-2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full opacity-0 group-hover:opacity-100 blur-md transition-all duration-300 -z-10"></span>
-            </button>
+            </a>
           </motion.div>
 
           <div className="hidden md:flex items-center space-x 1 relative">
             <div className="flex items-center space-x-1">
               {navLinks.map((link) => (
                 <div key={link.name} className="relative px-2">
-                  <button
-                    onClick={() => handleNavClick(link.id)}
-                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                  <a
+                    href={`#${link.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(link.id);
+                    }}
+                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 cursor-pointer ${
                       hoveredItem === link.name 
                         ? 'text-white' 
                         : 'text-gray-300 hover:text-white'
@@ -110,7 +118,7 @@ const Navbar = () => {
                     onMouseLeave={() => setHoveredItem(null)}
                   >
                     {link.name}
-                  </button>
+                  </a>
                   {hoveredItem === link.name && (
                     <motion.div
                       layoutId="navHover"
@@ -128,7 +136,17 @@ const Navbar = () => {
               ))}
             </div>
             
-            <div className="h-6 w-px bg-gray-700 mx-4"></div>
+            <div className="h-6 w-px bg-gray-700 mx-4 hidden md:block"></div>
+            <motion.img
+              src="/nave-pixel-art.png"
+              alt="Nave Pixel Art"
+              initial={{ x: 0, y: 0 }}
+              animate={{ x: [-10, 10, -10], y: [0, 2, 0, -2, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+              className="w-10 h-10 object-contain drop-shadow-lg select-none hidden md:block"
+              draggable={false}
+              style={{ transform: 'rotate(90deg)' }}
+            />
           </div>
 
           <motion.div 
@@ -137,7 +155,7 @@ const Navbar = () => {
           >
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+              className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
               aria-label="Toggle menu"
             >
               {isOpen ? (
@@ -160,13 +178,17 @@ const Navbar = () => {
             >
               <div className="flex flex-col space-y-1">
                 {navLinks.map((link) => (
-                  <button
+                  <a
                     key={link.id}
-                    onClick={() => handleNavClick(link.id)}
-                    className="px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800/50 transition-all cursor-pointer font-medium text-sm"
+                    href={`#${link.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(link.id);
+                    }}
+                    className="block px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800/50 transition-all font-medium text-sm w-full text-left cursor-pointer"
                   >
                     {link.name}
-                  </button>
+                  </a>
                 ))}
               </div>
             </motion.div>
