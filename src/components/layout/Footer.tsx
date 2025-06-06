@@ -1,5 +1,4 @@
 import { FaLinkedin } from 'react-icons/fa';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 type NavLink = {
@@ -128,83 +127,121 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-br from-[#181825] via-[#232136] to-[#181825] border-t border-gray-800 pt-16 pb-8 backdrop-blur-xl">
-      {/* Círculos decorativos blur */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.3, scale: 1 }}
-        transition={{ duration: 1.2 }}
-        className="pointer-events-none absolute -top-24 -left-24 w-72 h-72 rounded-full bg-gradient-to-br from-purple-500/30 to-indigo-500/20 blur-3xl"
-      />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.25, scale: 1 }}
-        transition={{ duration: 1.5, delay: 0.3 }}
-        className="pointer-events-none absolute -bottom-32 right-0 w-96 h-96 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20 blur-3xl"
-      />
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+    <footer className="relative bg-gray-900 border-t border-gray-800 pt-12 pb-8">
+      <div className="container mx-auto px-4">
+        {/* Versión móvil - Acordeón */}
+        <div className="lg:hidden space-y-6 mb-8">
+          {/* Brand y redes sociales */}
+          <div className="text-center mb-8">
+            <Link 
+              to="/" 
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToTop();
+              }}
+              className="inline-block text-2xl font-bold bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] bg-clip-text text-transparent mb-4"
+            >
+              PixelForge
+            </Link>
+            <p className="text-gray-400 text-sm mb-4">
+              Soluciones web modernas y personalizadas
+            </p>
+            <div className="flex justify-center space-x-4">
+              {socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`p-2 rounded-full ${social.gradient.replace('bg-gradient-to-br', 'bg-gradient-to-r')} text-white`}
+                  aria-label={social.label}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Acordeón de enlaces */}
+          <div className="space-y-4">
+            {footerLinks.map((column, index) => (
+              <details key={index} className="group">
+                <summary className="flex justify-between items-center p-3 bg-gray-800/50 rounded-lg cursor-pointer list-none">
+                  <h4 className="font-medium text-white">{column.title}</h4>
+                  <svg className="w-5 h-5 text-gray-400 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <ul className="mt-2 pl-4 space-y-2">
+                  {column.links.map((link, linkIndex) => (
+                    <li key={linkIndex} className="py-1.5">
+                      {'path' in link ? (
+                        <a 
+                          href={link.path}
+                          onClick={(e) => handleLegalLinkClick(e, link.path)}
+                          className="text-gray-400 hover:text-white text-sm block py-1"
+                        >
+                          {link.name}
+                        </a>
+                      ) : (
+                        <a 
+                          href={`#${link.id}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            scrollToSection(link.id);
+                          }}
+                          className="text-gray-400 hover:text-white text-sm block py-1"
+                        >
+                          {link.name}
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            ))}
+          </div>
+        </div>
+
+        {/* Versión escritorio */}
+        <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Brand info */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center space-x-2 mb-4">
+          <div>
+            <div className="mb-4">
               <Link 
                 to="/" 
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToTop();
                 }}
-                className="text-2xl font-bold bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] bg-clip-text text-transparent animate-pulse drop-shadow-lg hover:opacity-80 transition-opacity cursor-pointer"
+                className="text-2xl font-bold bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] bg-clip-text text-transparent"
               >
                 PixelForge
               </Link>
             </div>
-            <p className="text-gray-400 mb-6">
+            <p className="text-gray-400 text-sm mb-6">
               Soluciones web modernas y personalizadas para hacer crecer tu presencia en línea.
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((social, index) => (
-                <motion.a
+                <a
                   key={index}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`group relative p-1.5 rounded-full bg-gradient-to-br ${social.gradient} shadow-lg`}
+                  className={`p-2 rounded-full ${social.gradient} text-white hover:opacity-90 transition-opacity`}
                   aria-label={social.label}
-                  whileHover={{ 
-                    scale: 1.15,
-                    rotate: [0, 10, -10, 0],
-                    transition: { duration: 0.4 }
-                  }}
-                  whileTap={{ scale: 0.9 }}
                 >
-                  <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <span className="relative z-10 text-white">
-                    {social.icon}
-                  </span>
-                  <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-white/20 to-transparent"></div>
-                </motion.a>
+                  {social.icon}
+                </a>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {footerLinks.map((column, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 * index }}
-              viewport={{ once: true }}
-            >
-              <h4 className="font-semibold mb-4 text-lg tracking-wide">
-                <span className="bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] bg-clip-text text-transparent animate-pulse drop-shadow-lg">
-                  {column.title}
-                </span>
-                <span className="block h-0.5 w-0 bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] transition-all duration-500 group-hover:w-full group-hover:opacity-100 opacity-0 mt-1"></span>
+            <div key={index}>
+              <h4 className="font-semibold mb-4 text-white">
+                {column.title}
               </h4>
               <ul className="space-y-3">
                 {column.links.map((link, linkIndex) => (
@@ -213,74 +250,69 @@ const Footer = () => {
                       <a 
                         href={link.path}
                         onClick={(e) => handleLegalLinkClick(e, link.path)}
-                        className="text-gray-400 hover:text-[#8b5cf6] transition-colors font-medium hover:underline underline-offset-4 decoration-[#8b5cf6]/40 block cursor-pointer"
+                        className="text-gray-400 hover:text-white text-sm block py-1 transition-colors"
                       >
                         {link.name}
                       </a>
                     ) : (
-                      <button
+                      <a 
+                        href={`#${link.id}`}
                         onClick={(e) => {
                           e.preventDefault();
                           scrollToSection(link.id);
                         }}
-                        className="text-gray-400 hover:text-[#8b5cf6] transition-colors font-medium hover:underline underline-offset-4 decoration-[#8b5cf6]/40 text-left w-full py-1 cursor-pointer"
+                        className="text-gray-400 hover:text-white text-sm block py-1 transition-colors"
                       >
                         {link.name}
-                      </button>
+                      </a>
                     )}
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="border-t border-gray-800/70 pt-8 flex flex-col md:flex-row justify-between items-center backdrop-blur-xl"
-        >
-          <p className="text-gray-500 text-sm mb-4 md:mb-0 flex items-center gap-2">
-            <img
-  src="/yunke.png"
-  alt="Yunque PixelForge"
-  width={24}
-  height={24}
-  style={{ mixBlendMode: 'normal', filter: 'none', opacity: 1, display: 'inline-block', verticalAlign: 'middle' }}
-/>
-            &copy; {currentYear} <span className="text-[#8b5cf6] font-bold">PixelForge</span>. Todos los derechos reservados.
-          </p>
-          <div className="flex space-x-6">
-            <Link 
-              to="/legal/privacidad"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                setTimeout(() => {
-                  window.location.href = '/legal/privacidad';
-                }, 100);
-              }}
-              className="text-gray-500 hover:text-[#8b5cf6] text-sm transition-colors font-medium cursor-pointer"
-            >
-              Política de privacidad
-            </Link>
-            <Link 
-              to="/legal/terminos"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                setTimeout(() => {
-                  window.location.href = '/legal/terminos';
-                }, 100);
-              }}
-              className="text-gray-500 hover:text-[#8b5cf6] text-sm transition-colors font-medium cursor-pointer"
-            >
-              Términos de servicio
-            </Link>
+        {/* Copyright */}
+        <div className="pt-6 border-t border-gray-800">
+          <div className="flex flex-col md:flex-row justify-between items-center text-center space-y-2 md:space-y-0">
+            <p className="text-gray-500 text-sm">
+              &copy; {currentYear} <span className="text-[#8b5cf6] font-bold">PixelForge</span>. Todos los derechos reservados.
+            </p>
+            <div className="flex space-x-4">
+              <Link 
+                to="/legal/privacidad"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLegalLinkClick(e, '/legal/privacidad');
+                }}
+                className="text-gray-500 hover:text-white text-sm transition-colors"
+              >
+                Privacidad
+              </Link>
+              <Link 
+                to="/legal/terminos"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLegalLinkClick(e, '/legal/terminos');
+                }}
+                className="text-gray-500 hover:text-white text-sm transition-colors"
+              >
+                Términos
+              </Link>
+              <a 
+                href="#" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToTop();
+                }}
+                className="text-gray-500 hover:text-white text-sm transition-colors"
+              >
+                Volver arriba
+              </a>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );
