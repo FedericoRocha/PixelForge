@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars as Bars3Icon, FaTimes as XMarkIcon } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const scrollToSection = (id: string) => {
@@ -103,22 +103,31 @@ const Navbar = () => {
             <div className="flex items-center space-x-1">
               {navLinks.map((link) => (
                 <div key={link.name} className="relative px-2">
-                  <a
-                    href={`#${link.id}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleNavClick(link.id);
-                    }}
-                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 cursor-pointer ${
-                      hoveredItem === link.name 
-                        ? 'text-white' 
-                        : 'text-gray-300 hover:text-white'
-                    }`}
-                    onMouseEnter={() => setHoveredItem(link.name)}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    {link.name}
-                  </a>
+                  <div key={link.id} className="relative group">
+                    <a
+                      href={`#${link.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsOpen(false);
+                        handleNavClick(link.id);
+                      }}
+                      className={`nav-link relative px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                        hoveredItem === link.name 
+                          ? 'text-white' 
+                          : 'text-gray-300 hover:text-white'
+                      }`}
+                      onMouseEnter={() => setHoveredItem(link.name)}
+                      onMouseLeave={() => setHoveredItem(null)}
+                    >
+                      <span className="relative z-10">{link.name}</span>
+                      <span 
+                        className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-blue-400 transition-all duration-300 group-hover:w-full"
+                        style={{
+                          boxShadow: '0 0 10px rgba(167, 139, 250, 0.7)',
+                        }}
+                      />
+                    </a>
+                  </div>
                   {hoveredItem === link.name && (
                     <motion.div
                       layoutId="navHover"
@@ -155,14 +164,19 @@ const Navbar = () => {
           >
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
-              aria-label="Toggle menu"
+              className="relative p-2 rounded-lg bg-gradient-to-br from-purple-500/10 to-blue-500/10 hover:from-purple-500/20 hover:to-blue-500/20 transition-all duration-300 cursor-pointer group"
+              aria-expanded={isOpen}
+              aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
             >
-              {isOpen ? (
-                <FaTimes className="h-6 w-6 text-white" />
-              ) : (
-                <FaBars className="h-6 w-6 text-white" />
-              )}
+              <span className="sr-only">{isOpen ? 'Cerrar menú' : 'Abrir menú'}</span>
+              <div className="relative z-10">
+                {isOpen ? (
+                  <XMarkIcon className="h-6 w-6 text-white" />
+                ) : (
+                  <Bars3Icon className="h-6 w-6 text-white" />
+                )}
+              </div>
+              <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500/30 to-blue-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
           </motion.div>
         </nav>

@@ -94,13 +94,17 @@ const Projects = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
-            <motion.div
+            <motion.a
               key={index}
+              href={project.demo || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-purple-500/30 transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10"
+              className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-purple-500/30 transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10 cursor-pointer block"
+              onClick={(e) => !project.demo && e.preventDefault()}
             >
               <div className="relative h-48 overflow-hidden">
                 <img
@@ -122,15 +126,17 @@ const Projects = () => {
                     </div>
                     <div className="flex space-x-2">
                       {project.demo && (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            window.open(project.demo, '_blank', 'noopener,noreferrer');
+                          }}
                           className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all"
                           aria-label="Ver demo"
                         >
                           <FiExternalLink className="w-4 h-4" />
-                        </a>
+                        </button>
                       )}
                       {project.code && (
                         <a
@@ -139,6 +145,7 @@ const Projects = () => {
                           rel="noopener noreferrer"
                           className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all"
                           aria-label="Ver código"
+                          onClick={(e) => e.stopPropagation()}
                         >
                           <FiGithub className="w-4 h-4" />
                         </a>
@@ -158,20 +165,12 @@ const Projects = () => {
                 <p className="text-gray-400 text-sm mb-4 line-clamp-2">
                   {project.description}
                 </p>
-                <button 
-                  onClick={() => {
-                    if (project.demo) {
-                      window.open(project.demo, '_blank', 'noopener,noreferrer');
-                    }
-                  }}
-                  className="inline-flex items-center text-sm font-medium text-purple-400 hover:text-white group-hover:translate-x-1 transition-all duration-300 cursor-pointer"
-                  disabled={!project.demo}
-                >
+                <div className="inline-flex items-center text-sm font-medium text-purple-400 group-hover:text-white transition-all duration-300">
                   Ver proyecto
                   <FiArrowRight className="ml-1.5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 
