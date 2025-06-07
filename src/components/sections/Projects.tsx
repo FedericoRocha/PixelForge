@@ -6,6 +6,15 @@ const categories = ['Todos', 'Web', 'Aplicaciones', 'Diseño'];
 
 const projects = [
   {
+    title: 'Portfolio Profesional de Arquitectura',
+    description: 'Portfolio digital para una arquitecta, mostrando su trayectoria, proyectos destacados y enfoque de diseño. Incluye galería de proyectos, biografía y formulario de contacto.',
+    tags: ['React', 'Tailwind CSS', 'Portfolio', 'Diseño Minimalista'],
+    category: 'Web',
+    image: '/edificio.avif',
+    demo: 'https://tamara-gomez.vercel.app',
+    code: ''
+  },
+  {
     title: 'Landing para Estudio Jurídico',
     description: 'Sitio clásico y profesional para un estudio jurídico. Diseño sobrio, tipografía elegante y presentación clara de servicios legales.',
     tags: ['React', 'Tailwind CSS', 'Diseño Clásico'],
