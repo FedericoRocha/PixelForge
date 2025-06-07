@@ -185,40 +185,33 @@ const About = () => {
                 </div>
               </div>
               
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                 <a
                   href="#contact"
-                  className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 flex items-center gap-2 group"
+                  className="px-6 py-3.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 flex items-center justify-center gap-2 group flex-1 sm:flex-none sm:px-6"
                 >
-                  Contáctame
+                  <span>Contáctame</span>
                   <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a
                   href="https://curriculum-web-flax.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative px-8 py-3.5 bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 flex items-center gap-2 group overflow-hidden hover:brightness-110"
+                  className="relative px-4 py-3.5 bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 flex items-center justify-center gap-2 group overflow-hidden hover:brightness-110 flex-1 sm:flex-none sm:px-6"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                  <span className="relative z-10 flex items-center gap-3">
-                    <span className="relative">
-                      <span className="relative z-0">
-                        <span className="text-4xl group-hover:animate-bounce-slow block transform group-hover:scale-110 transition-transform duration-300">
-                          <span className="relative z-10 inline-block">
-                            <span className="relative z-10 drop-shadow-[0_0_12px_rgba(167,139,250,0.8)]">
-                              👾
-                            </span>
-                            <span className="absolute inset-0 bg-gradient-to-r from-purple-400/30 to-blue-400/30 rounded-full blur-md opacity-70 -z-10"></span>
-                          </span>
+                  <span className="relative z-10 flex items-center gap-2">
+                    <span className="hidden sm:inline-block text-3xl sm:text-4xl transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-6">
+                      <span className="relative z-10 inline-block">
+                        <span className="relative z-10 drop-shadow-[0_0_15px_rgba(167,139,250,0.9)] brightness-110 contrast-125">
+                          👾
                         </span>
-                        <span className="absolute -inset-2 bg-gradient-to-r from-cyan-400/40 to-purple-500/40 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 -z-20 scale-90 group-hover:scale-110"></span>
+                        <span className="absolute inset-0 bg-gradient-to-r from-purple-400/40 to-blue-400/40 rounded-full blur-md opacity-80 -z-10"></span>
+                        <span className="absolute -inset-1 bg-gradient-to-r from-cyan-400/30 to-purple-500/30 rounded-full blur opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-20"></span>
                       </span>
                     </span>
-                    <span className="font-medium">Ver mi CV Online</span>
-                    <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform text-purple-200" />
-                  </span>
-                  <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:animate-pulse-slow transition-opacity duration-300">
-                    <span className="absolute w-4 h-4 bg-white/30 rounded-full"></span>
+                    <span className="font-medium">Ver mi CV</span>
+                    <FiArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform text-purple-200" />
                   </span>
                 </a>
               </div>
