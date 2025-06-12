@@ -4,13 +4,49 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface AlternatingTextProps {
   texts: string[];
   interval?: number;
+  color?: 'cyan' | 'pink' | 'purple';
 }
+
+const colorSchemes = {
+  cyan: {
+    color: '#0ff',
+    shadows: [
+      '0 0 2px #fff',
+      '0 0 5px #fff',
+      '0 0 10px #0ff',
+      '0 0 20px #0ff',
+      '0 0 40px #0ff'
+    ].join(',')
+  },
+  pink: {
+    color: '#ff2d75',
+    shadows: [
+      '0 0 2px #fff',
+      '0 0 5px #fff',
+      '0 0 10px #ff2d75',
+      '0 0 20px #ff2d75',
+      '0 0 40px #ff2d75'
+    ].join(',')
+  },
+  purple: {
+    color: '#bc13fe',
+    shadows: [
+      '0 0 2px #fff',
+      '0 0 5px #fff',
+      '0 0 10px #bc13fe',
+      '0 0 20px #bc13fe',
+      '0 0 40px #bc13fe'
+    ].join(',')
+  }
+} as const;
 
 export const AlternatingText = ({ 
   texts, 
-  interval = 3000
+  interval = 3000,
+  color = 'cyan'
 }: AlternatingTextProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const colors = colorSchemes[color];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -21,36 +57,42 @@ export const AlternatingText = ({
   }, [texts.length, interval]);
 
   return (
-    <div className="inline-block overflow-hidden h-[1.2em] leading-none">
+    <div className="inline-block">
       <AnimatePresence mode="wait">
         <motion.span
           key={currentIndex}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ 
             opacity: 1,
             y: 0,
-            textShadow: [
-              '0 0 2px #0ff, 0 0 5px #0ff, 0 0 10px #0ff',
-              '0 0 2px #0ff, 0 0 5px #0ff, 0 0 15px #0ff, 0 0 25px #0ff',
-              '0 0 2px #0ff, 0 0 5px #0ff, 0 0 10px #0ff'
-            ],
-            color: '#0ff',
-            filter: 'brightness(1.2)'
+            color: colors.color,
+            textShadow: colors.shadows,
+            filter: 'brightness(1.1)',
+            WebkitTextStroke: '1px rgba(255, 255, 255, 0.7)',
+            paintOrder: 'stroke fill'
           }}
           exit={{ 
             opacity: 0, 
-            y: -20,
-            textShadow: '0 0 5px rgba(0, 255, 255, 0.2)'
+            y: -10,
+            textShadow: 'none',
+            WebkitTextStroke: '1px transparent'
           }}
           transition={{ 
-            duration: 0.5,
+            duration: 0.3,
             ease: 'easeInOut'
           }}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold"
+          className="inline-block whitespace-nowrap relative"
+          style={{
+            textShadow: colors.shadows,
+            WebkitTextFillColor: colors.color,
+            WebkitTextStroke: '1px rgba(255, 255, 255, 0.7)',
+            paintOrder: 'stroke fill'
+          }}
         >
           {texts[currentIndex]}
         </motion.span>
       </AnimatePresence>
+
     </div>
   );
 };

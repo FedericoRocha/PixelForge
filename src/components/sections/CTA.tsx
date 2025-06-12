@@ -21,52 +21,56 @@ const CTA = () => {
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-600/10 rounded-full filter blur-3xl"></div>
             <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-600/10 rounded-full filter blur-3xl"></div>
             
-            <div className="relative z-10 text-center">
+            <div className="relative z-10 text-center px-2 sm:px-0">
               <motion.span 
-                className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-purple-300 border border-purple-500/30 mb-6"
+                className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-purple-300 border border-purple-500/30 mb-4 sm:mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
               >
-                <FaRocket className="mr-2 animate-pulse" />
-                ¡Impulsa tu presencia digital hoy!
+                <FaRocket className="mr-1.5 sm:mr-2 text-xs sm:text-base animate-pulse" />
+                <span className="whitespace-nowrap">¡Impulsa tu presencia digital!</span>
               </motion.span>
               
               <motion.div 
-                className="mb-12 text-center"
+                className="mb-6 sm:mb-12 text-center px-2 sm:px-0"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  <div className="mb-2 md:mb-4">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
+                  <div className="mb-0 sm:mb-2 md:mb-4">
                     <NeonText 
                       text="¿Listo para hacer despegar" 
                       color="purple"
+                      className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl"
                     />
                   </div>
-                  <div className="mt-4">
-                    <AlternatingText 
-                      texts={["tu próximo proyecto?", "tu emprendimiento?", "tu visión digital?"]}
-                    />
+                  <div className="mt-2 sm:mt-3">
+                    <div className="inline-block text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
+                      <AlternatingText 
+                        texts={["tu proyecto?", "tu emprendimiento?", "tu visión digital?"]}
+                        color="cyan"
+                      />
+                    </div>
                   </div>
                 </h2>
               </motion.div>
               
               <motion.p 
-                className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed"
+                className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
               >
-                Transformemos tus ideas en una experiencia digital excepcional. Estoy aquí para hacer que tu visión cobre vida con soluciones a medida y un enfoque centrado en resultados.
+                Transformemos tus ideas en una experiencia digital excepcional. Estoy aquí para hacer que tu visión cobre vida con soluciones a medida.
               </motion.p>
               
               <motion.div 
-                className="flex flex-col sm:flex-row justify-center gap-6"
+                className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 w-full px-4 sm:px-0"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -74,12 +78,12 @@ const CTA = () => {
               >
                 <a
                   href="mailto:contacto@pixelforge.com"
-                  className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 overflow-hidden"
+                  className="group relative inline-flex items-center justify-center px-4 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 overflow-hidden w-full sm:w-auto"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   <span className="relative z-10 flex items-center">
                     <span>Iniciar Proyecto</span>
-                    <FaPaperPlane className="ml-3 group-hover:translate-x-1 transition-transform" />
+                    <FaPaperPlane className="ml-2 sm:ml-3 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </a>
                 
@@ -92,10 +96,10 @@ const CTA = () => {
                       element.scrollIntoView({ behavior: 'smooth' });
                     }
                   }}
-                  className="group inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white hover:text-gray-200 transition-colors"
+                  className="group inline-flex items-center justify-center px-4 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium text-white hover:text-gray-200 transition-colors w-full sm:w-auto"
                 >
-                  <FaCode className="mr-3 text-blue-400 group-hover:animate-pulse" />
-                  Ver mis trabajos
+                  <FaCode className="mr-2 sm:mr-3 w-4 h-4 sm:w-5 sm:h-5 text-blue-400 group-hover:animate-pulse flex-shrink-0" />
+                  <span>Ver mis trabajos</span>
                 </a>
               </motion.div>
               
