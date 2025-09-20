@@ -4,10 +4,31 @@ import { motion } from 'framer-motion';
 
 const categories = ['Todos', 'Web', 'Aplicaciones', 'Diseño'];
 
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  category: string;
+  image: string;
+  demo: string;
+  code: string;
+  isRealProject?: boolean;
+}
+
+const projects: Project[] = [
+  {
+    title: 'Futurgas - Servicios de Plomería, Gas y Electricidad',
+    description: 'Sitio web profesional para empresa de servicios de plomería, gas natural y electricidad.',
+    tags: ['React', 'Tailwind CSS', 'Landing Page', 'Servicios Técnicos'],
+    category: 'Web',
+    image: '/futurgas.jpg',
+    demo: 'https://futurgas.vercel.app',
+    code: '',
+    isRealProject: true
+  },
   {
     title: 'Portfolio Profesional de Arquitectura',
-    description: 'Portfolio digital para una arquitecta, mostrando su trayectoria, proyectos destacados y enfoque de diseño. Incluye galería de proyectos, biografía y formulario de contacto.',
+    description: 'Portfolio digital para una arquitecta, mostrando su trayectoria, proyectos destacados y enfoque de diseño.',
     tags: ['React', 'Tailwind CSS', 'Portfolio', 'Diseño Minimalista'],
     category: 'Web',
     image: '/edificio.avif',
@@ -162,9 +183,17 @@ const Projects = () => {
                     </div>
                   </div>
                 </div>
-                <span className="absolute top-4 right-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-medium px-3 py-1 rounded-full">
-                  {project.category}
-                </span>
+                <div className="absolute top-4 right-4 flex flex-col items-end gap-2">
+                  {project.isRealProject && (
+                    <span className="bg-green-600/90 text-white text-xs font-medium px-3 py-1 rounded-full flex items-center">
+                      <span className="w-2 h-2 bg-white rounded-full mr-1.5 animate-pulse"></span>
+                      Proyecto Real
+                    </span>
+                  )}
+                  <span className="bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-medium px-3 py-1 rounded-full">
+                    {project.category}
+                  </span>
+                </div>
               </div>
               
               <div className="p-6">
